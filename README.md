@@ -36,6 +36,10 @@ glean/
    0 9 * * 1-5 /home/aawej/glean/scripts/daily-outreach.sh
    ```
 
+## Testing with a fresh opencode instance
+
+Open a **new** opencode session from the `~/glean/` directory — the `.opencode/skills/` config will auto-load the `use-glean`, `linkedin-outreach`, and `browser-act` skills. A fresh agent with no prior context will then walk through the full setup flow.
+
 ## Usage
 
 - "Find 10 new leads matching my ICP"
