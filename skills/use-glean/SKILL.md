@@ -1,37 +1,25 @@
 ---
 name: use-glean
-description: "Glean — AI-powered lead management CRM. Use when the user says: glean, lead management, outreach, prospecting, find leads, my pipeline, CRM, lead tracking. On first run, guides the user through ICP setup by asking questions one at a time. After setup, runs outreach workflows."
+description: "Glean first-run setup. Guides user through ICP questions, creates browser, and confirms readiness. Use on first interaction or when user says: setup glean, configure glean, first run."
 ---
 
-# Glean
+# Glean Setup
 
-BrowserAct-powered lead management. Finds prospects on LinkedIn/X, tracks them in CSV, automates outreach.
+First-run configuration for Glean — multi-platform lead management (LinkedIn, X/Twitter, Email).
 
 ## Requirements
 
-Before first run, the user must have BrowserAct installed. Load the `browser-act` skill from `~/glean/skills/browser-act/SKILL.md` and run its setup.
-
-### 0. Install BrowserAct
-
-Load the `browser-act` skill, then run:
-
+Before first run, install BrowserAct:
 ```bash
 uv tool install browser-act-cli --python 3.12
 browser-act get-skills core --skill-version 2.0.2
 ```
 
-## First Run Setup
+## Step 1: Greet & Explain
 
-If `~/glean/icp/ideal-customer-profile.md` contains only the template (default), or `~/glean/data/leads.csv` has no leads, run first-run setup.
+> "Glean is your AI lead management system. I'll find prospects on LinkedIn, X/Twitter, and Email, track them in a CSV, and handle outreach across all platforms. First, I need to know who you want to target."
 
-### Step 1: Greet & Explain
-
-Tell the user:
-> "Glean is your AI lead management system. I'll search LinkedIn and X, find prospects matching your target, track them in a CSV, and handle outreach. First, I need to know who you want to target."
-
-### Step 2: Ask ICP Questions (one at a time)
-
-Ask each question, wait for answer, save. Do NOT dump all questions at once.
+## Step 2: Ask ICP Questions (one at a time)
 
 1. **Target Role**: "What role/title should I target? (e.g., CTO, VP Engineering, Head of Product)"
 2. **Industry**: "What industry? (e.g., SaaS, Fintech, HealthTech)"
@@ -39,11 +27,11 @@ Ask each question, wait for answer, save. Do NOT dump all questions at once.
 4. **Company Stage**: "Company stage? (e.g., Bootstrapped, Seed, Series A, B, C+, Enterprise)"
 5. **Location**: "Target location? (e.g., US, EU, Remote, India)"
 6. **Keywords**: "Keywords to search for? (e.g., AI agent, browser automation, web scraping)"
-7. **Outreach Angle**: "What's your outreach angle? What value do you offer? (e.g., 'We built a tool that automates LinkedIn outreach using AI agents')"
+7. **Outreach Angle**: "What's your outreach angle? What value do you offer?"
 8. **Exclusions**: "Anything to exclude? (e.g., agencies, freelancers, students)"
-9. **Custom Instructions**: "Any specific instructions for how I should handle outreach? Tone, style, do's and don'ts, follow-up rules? (e.g., casual tone, no pitching in first message, wait 5 days before follow-up)"
+9. **Custom Instructions**: "Any specific instructions for how I should handle outreach? Tone, style, do's/don'ts, follow-up rules?"
 
-### Step 3: Save ICP
+## Step 3: Save ICP
 
 ```bash
 cat > ~/glean/icp/ideal-customer-profile.md << 'ICPEOF'
@@ -78,65 +66,22 @@ These rules override everything else. The agent MUST follow them strictly.
 ICPEOF
 ```
 
-### Step 4: Setup BrowserAct & Create Browser
+## Step 4: Setup BrowserAct & Create Browser
 
-Load the `browser-act` skill from `~/glean/skills/browser-act/SKILL.md` for full CLI usage guide. Then:
-
+Check if browser exists:
 ```bash
-# Check if browser exists
 browser-act browser list
 ```
 
-If no browser named `glean` exists, ask user to log into LinkedIn in Chrome first, then create:
-
+Ask user to log into LinkedIn, X/Twitter, and Gmail/Outlook in Chrome first, then:
 ```bash
-browser-act browser create --name glean --type chrome-direct --desc "Glean LinkedIn outreach browser"
+browser-act browser create --name glean --type chrome-direct --desc "Glean outreach browser"
 ```
 
-### Step 5: Confirm Setup
+## Step 5: Confirm Setup
 
-> "Glean is ready! I'll search for leads matching your ICP. Want me to find the first batch?"
+> "Glean is ready on all platforms! I can search LinkedIn, X/Twitter, and send emails for your ICP. Want me to find the first batch of leads?"
 
-## Daily Workflows
+## Next Steps
 
-### Find Leads
-
-```bash
-# Search LinkedIn
-browser-act --session glean navigate "https://www.linkedin.com/search/results/people/?keywords=<keywords>"
-browser-act --session glean state
-# Extract profiles and save to CSV
-```
-
-### Check Pipeline
-
-```bash
-# Show pipeline summary
-echo "=== GLEAN PIPELINE ==="
-echo "Discovered: $(tail -n +2 ~/glean/data/leads.csv | grep -c ',discovered,')"
-echo "Contacted: $(tail -n +2 ~/glean/data/leads.csv | grep -c ',contacted,')"
-echo "Replied: $(tail -n +2 ~/glean/data/leads.csv | grep -c ',replied,')"
-echo "Meetings: $(tail -n +2 ~/glean/data/leads.csv | grep -c ',meeting_booked,')"
-echo "Converted: $(tail -n +2 ~/glean/data/leads.csv | grep -c ',converted,')"
-```
-
-### Send Connection Requests
-
-```bash
-# Get a lead from discovered stage
-browser-act --session glean navigate "<linkedin_url>"
-browser-act --session glean click <connect_button>
-browser-act --session glean input <note_field> "Hi <name>, <outreach_angle>"
-browser-act --session glean click <send_button>
-# Update CSV stage to contacted
-```
-
-### Follow Up
-
-Check for leads with stage=contacted and last_followup > 3 days. Send follow-up message.
-
-## File Paths
-
-- ICP: `~/glean/icp/ideal-customer-profile.md`
-- Leads: `~/glean/data/leads.csv`
-- Scripts: `~/glean/scripts/daily-outreach.sh`
+Load the `glean` skill for daily workflows and platform-specific orchestration.
