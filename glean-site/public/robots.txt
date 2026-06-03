@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://glean-outreach.vercel.app/sitemap.xml

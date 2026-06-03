@@ -2,6 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Install with npx skills](https://img.shields.io/badge/install-npx%20skills-6B46C1)](https://github.com/pathanaawej0-dot/Glean)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fpathanaawej0-dot%2FGlean)
 [![BrowserAct](https://img.shields.io/badge/powered%20by-BrowserAct-FF6B35)](https://www.browseract.com)
 
 **Glean** is an AI agent skill pack that turns your coding agent into a lead management system. It searches **LinkedIn, X/Twitter, Email, and Google Maps** for prospects matching your ideal customer profile (ICP), tracks them in a local CSV, and handles outreach — all through natural conversation.
