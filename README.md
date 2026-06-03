@@ -6,13 +6,18 @@ A private CRM powered by BrowserAct. An AI agent finds leads on LinkedIn/X, trac
 
 ```
 glean/
+├── LICENSE                         # MIT License
 ├── icp/
 │   └── ideal-customer-profile.md   # Define who to target
 ├── data/
 │   └── leads.csv                   # All lead data
 ├── skills/
-│   └── linkedin-outreach/
-│       └── SKILL.md                # Agent skill for outreach
+│   ├── browser-act/
+│   │   └── SKILL.md                # BrowserAct CLI skill
+│   ├── linkedin-outreach/
+│   │   └── SKILL.md                # LinkedIn automation skill
+│   └── use-glean/
+│       └── SKILL.md                # Main Glean skill (start here)
 ├── scripts/
 │   └── daily-outreach.sh           # Cron entry point
 └── README.md

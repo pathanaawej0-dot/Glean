@@ -7,6 +7,19 @@ description: "Glean — AI-powered lead management CRM. Use when the user says: 
 
 BrowserAct-powered lead management. Finds prospects on LinkedIn/X, tracks them in CSV, automates outreach.
 
+## Requirements
+
+Before first run, the user must have BrowserAct installed. Load the `browser-act` skill from `~/glean/skills/browser-act/SKILL.md` and run its setup.
+
+### 0. Install BrowserAct
+
+Load the `browser-act` skill, then run:
+
+```bash
+uv tool install browser-act-cli --python 3.12
+browser-act get-skills core --skill-version 2.0.2
+```
+
 ## First Run Setup
 
 If `~/glean/icp/ideal-customer-profile.md` contains only the template (default), or `~/glean/data/leads.csv` has no leads, run first-run setup.
@@ -30,15 +43,6 @@ Ask each question, wait for answer, save. Do NOT dump all questions at once.
 8. **Exclusions**: "Anything to exclude? (e.g., agencies, freelancers, students)"
 
 ### Step 3: Save ICP
-
-After each answer, write to the ICP file using:
-
-```bash
-# Replace placeholder values in the ICP file
-# Use sed or direct writes per field
-```
-
-Full command after all questions answered:
 
 ```bash
 cat > ~/glean/icp/ideal-customer-profile.md << 'ICPEOF'
@@ -67,15 +71,16 @@ cat > ~/glean/icp/ideal-customer-profile.md << 'ICPEOF'
 ICPEOF
 ```
 
-### Step 4: Create Browser (if needed)
+### Step 4: Setup BrowserAct & Create Browser
 
-Check if a browser named `glean` exists:
+Load the `browser-act` skill from `~/glean/skills/browser-act/SKILL.md` for full CLI usage guide. Then:
 
 ```bash
+# Check if browser exists
 browser-act browser list
 ```
 
-If not, ask user to log into LinkedIn in Chrome first, then create:
+If no browser named `glean` exists, ask user to log into LinkedIn in Chrome first, then create:
 
 ```bash
 browser-act browser create --name glean --type chrome-direct --desc "Glean LinkedIn outreach browser"
