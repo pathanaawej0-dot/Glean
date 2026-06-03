@@ -19,7 +19,7 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.headerContent}>
         <Link href="/" className={styles.logoArea}>
-          <img src="/glean-logo.svg" alt="Glean" className={styles.logoImage} />
+          <img src="/glean-logo.png" alt="Glean" className={styles.logoImage} />
           <span className={styles.logoText}>Glean</span>
         </Link>
         
