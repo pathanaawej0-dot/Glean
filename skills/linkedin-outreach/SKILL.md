@@ -5,30 +5,22 @@ description: "LinkedIn lead generation and outreach automation. Use when the use
 
 # LinkedIn Outreach
 
-A BrowserAct-powered skill for LinkedIn lead generation and outreach.
+BrowserAct-powered LinkedIn lead generation. Load the `browser-act` skill from `~/glean/skills/browser-act/SKILL.md` for all CLI commands (state, click, input, navigate, etc.). This skill covers the LinkedIn-specific workflow only.
 
 ## Requirements
 
-- BrowserAct CLI installed
-- Chrome-direct browser `glean` created (or chrome with LinkedIn login)
+- BrowserAct CLI installed (see `use-glean` skill)
+- Chrome-direct browser `glean` with LinkedIn login
 
 ## Workflow
 
 ### 1. Search Leads
 
-```bash
-browser-act --session outreach navigate "https://www.linkedin.com/search/results/people/?keywords=<keywords>"
-browser-act --session outreach state
-# Extract profile links
-```
+Use BrowserAct to navigate to LinkedIn search with ICP keywords, extract profile URLs from the search results page.
 
 ### 2. Extract Profile
 
-Navigate to each profile:
-```bash
-browser-act --session outreach navigate "https://www.linkedin.com/in/<username>/"
-browser-act --session outreach get markdown
-```
+Navigate to each profile URL, get markdown, parse: name, title, company, location, about section.
 
 ### 3. Save to CSV
 
@@ -38,17 +30,11 @@ echo "<id>,<name>,<title>,<company>,<industry>,<linkedin_url>,<x_handle>,<email>
 
 ### 4. Connect / Message
 
-```bash
-browser-act --session outreach navigate "https://www.linkedin.com/in/<username>/"
-# Click Connect button, add note
-browser-act --session outreach click <connect_button_index>
-browser-act --session outreach input <note_field_index> "Hi <name>, I came across your profile..."
-browser-act --session outreach click <send_index>
-```
+Navigate to profile → click Connect → add personalized note using ICP outreach angle → send.
 
 ### 5. Follow-up
 
-Read leads.csv for stage=contacted and last_followup > 3 days, then send follow-up.
+Check `leads.csv` for stage=contacted where last_followup > 3 days. Send a follow-up message.
 
 ## Lead Stages
 
