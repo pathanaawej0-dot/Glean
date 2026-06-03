@@ -28,5 +28,6 @@ echo "  Discovered: $(tail -n +2 $HOME/glean/data/leads.csv | grep -c ',discover
 echo "  Contacted: $(tail -n +2 $HOME/glean/data/leads.csv | grep -c ',contacted,')" >> "$LOG"
 echo "  Replied: $(tail -n +2 $HOME/glean/data/leads.csv | grep -c ',replied,')" >> "$LOG"
 echo "  Booked: $(tail -n +2 $HOME/glean/data/leads.csv | grep -c ',meeting_booked,')" >> "$LOG"
+echo "  By platform - LI:$(tail -n +2 $HOME/glean/data/leads.csv | grep -c ',linkedin,') X:$(tail -n +2 $HOME/glean/data/leads.csv | grep -c ',x,') EM:$(tail -n +2 $HOME/glean/data/leads.csv | grep -c ',email,')" >> "$LOG"
 
 echo "[$DATE] Daily outreach complete." >> "$LOG"

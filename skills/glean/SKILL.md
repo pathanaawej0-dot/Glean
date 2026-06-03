@@ -47,8 +47,13 @@ echo "Replied: $(tail -n +2 ~/glean/data/leads.csv | grep -c ',replied,')"
 echo "Booked: $(tail -n +2 ~/glean/data/leads.csv | grep -c ',meeting_booked,')"
 echo "Converted: $(tail -n +2 ~/glean/data/leads.csv | grep -c ',converted,')"
 
+echo "--- By Platform ---"
+echo "LinkedIn: $(tail -n +2 ~/glean/data/leads.csv | grep -c ',linkedin,')"
+echo "X/Twitter: $(tail -n +2 ~/glean/data/leads.csv | grep -c ',x,')"
+echo "Email: $(tail -n +2 ~/glean/data/leads.csv | grep -c ',email,')"
+
 # Add lead manually
-echo "<id>,<name>,<title>,<company>,<industry>,<linkedin_url>,<x_handle>,<email>,<stage>,<score>,<source>,<tags>,<notes>,<first_contact>,<last_followup>,<next_followup>" >> ~/glean/data/leads.csv
+echo "<id>,<name>,<title>,<company>,<industry>,<linkedin_url>,<x_handle>,<email>,<stage>,<score>,<source>,<platform>,<tags>,<notes>,<first_contact>,<last_followup>,<next_followup>" >> ~/glean/data/leads.csv
 ```
 
 ## File Paths
