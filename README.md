@@ -44,13 +44,13 @@ This installs 5 skills to your AI agent. Works with **OpenCode, Claude Code, Cod
 
 ### Installed Skills
 
-| Skill | Description |
-|-------|-------------|
-| `glean` | Main entry point — setup, pipeline, orchestration across all platforms |
-| `linkedin-outreach` | LinkedIn people search, profile extraction, connection requests, messaging |
-| `x-outreach` | X/Twitter profile and post search, replies, DMs |
-| `email-outreach` | Email discovery, verification, sending, tracking |
-| `browser-act` | BrowserAct CLI reference (loaded automatically by other skills) |
+| Skill | Description | Bundled Templates |
+|-------|-------------|-------------------|
+| `glean` | Main entry — setup, pipeline, orchestration | `leads.csv`, `icp-template.md` |
+| `linkedin-outreach` | LinkedIn people search, connect, message | — |
+| `x-outreach` | X/Twitter search, reply, DM | — |
+| `email-outreach` | Email discovery, verification, sending | — |
+| `browser-act` | BrowserAct CLI reference | — |
 
 ### Verify Installation
 
@@ -59,32 +59,26 @@ Open your AI agent and say:
 
 You should see: `glean`, `linkedin-outreach`, `x-outreach`, `email-outreach`, `browser-act`.
 
-## First Run
+## First Run — "setup glean"
 
-### 1. Start Fresh
-
-Open your AI agent and type:
+Open your agent and type:
 
 > *"setup glean"*
 
-The agent will take it from here — asking 9 ICP questions one at a time.
+The agent will:
+1. Check/install BrowserAct and create a browser
+2. Ask **9 ICP questions** one at a time (role, industry, size, stage, location, keywords, angle, exclusions, custom instructions)
+3. Create `./glean-data/` with your ICP and lead CSV right in your current project
 
-### 2. Answer ICP Questions
+```
+./glean-data/
+├── data/
+│   └── leads.csv
+└── icp/
+    └── ideal-customer-profile.md
+```
 
-The agent asks (one by one, waiting for your answer):
-1. **Target Role** — e.g., CTO, VP Engineering, Head of Product
-2. **Industry** — e.g., SaaS, Fintech, HealthTech
-3. **Company Size** — e.g., 1-10, 10-50, 50-200
-4. **Company Stage** — e.g., Bootstrapped, Seed, Series A
-5. **Location** — e.g., US, EU, Remote
-6. **Keywords** — search terms for finding leads
-7. **Outreach Angle** — your value proposition
-8. **Exclusions** — who to skip (e.g., agencies, students)
-9. **Custom Instructions** — outreach tone, style, do's/don'ts
-
-### 3. Setup Complete
-
-The agent creates `./glean-data/` with your ICP, an empty CSV with headers, and a BrowserAct browser named `glean`. Make sure you're logged into LinkedIn, X/Twitter, and Gmail/Outlook in Chrome before this step.
+4. Confirm everything is ready
 
 ## Daily Use
 
@@ -94,15 +88,13 @@ The agent creates `./glean-data/` with your ICP, an empty CSV with headers, and 
 |---------|----------|-------------|
 | `"find 10 leads on LinkedIn"` | LinkedIn | Searches people with ICP keywords, visits profiles, saves to CSV |
 | `"find leads posting about GEO on X"` | X/Twitter | Searches posts with pain-point keywords, extracts profiles |
-| `"find emails for my ICP on LinkedIn"` | Email | Cross-references LinkedIn profiles with email finders |
-| `"find leads interested in AI agents"` | All | Asks which platform, then searches |
+| `"find emails for my ICP"` | Email | Cross-references LinkedIn/X profiles with email finders |
 
 ### Managing Pipeline
 
 | Command | Agent Action |
 |---------|-------------|
 | `"show my pipeline"` | Reads CSV, shows breakdown by stage and platform |
-| `"show leads by platform"` | Groups leads by LinkedIn/X/Email |
 | `"show leads who replied"` | Filters CSV for stage=replied |
 
 ### Outreach
@@ -123,14 +115,29 @@ The agent creates `./glean-data/` with your ICP, an empty CSV with headers, and 
 ## Project Structure
 
 ```
-./glean-data/
-├── data/
-│   └── leads.csv               ← All leads (agent creates at setup)
-└── icp/
-    └── ideal-customer-profile.md  ← Your ICP (agent creates at setup)
+pathanaawej0-dot/Glean/
+├── skills/
+│   ├── glean/                 ← Entry: setup + pipeline + orchestration
+│   │   ├── SKILL.md           ← Skill instructions
+│   │   ├── leads.csv          ← CSV template (bundled)
+│   │   └── icp-template.md    ← ICP template (bundled)
+│   ├── linkedin-outreach/     ← LinkedIn workflow
+│   ├── x-outreach/            ← X/Twitter workflow
+│   ├── email-outreach/        ← Email workflow
+│   └── browser-act/           ← CLI reference
+├── .gitignore
+├── LICENSE
+└── README.md
 ```
 
-The data lives at `./glean-data/` in your project directory. The skills live in your agent's config directory (installed by `npx skills add`).
+After setup, `./glean-data/` appears in your working directory:
+```
+./glean-data/
+├── data/
+│   └── leads.csv
+└── icp/
+    └── ideal-customer-profile.md
+```
 
 ### CSV Schema
 
@@ -142,19 +149,17 @@ id,name,title,company,industry,linkedin_url,x_handle,email,stage,score,source,pl
 |-------|-------------|
 | `platform` | `linkedin`, `x`, or `email` — which source the lead came from |
 | `stage` | `discovered` → `contacted` → `replied` → `meeting_booked` → `converted` → `dead` |
-| `source` | e.g., "LinkedIn search", "X post reply", "email finder" |
-| `custom_instructions` | Stored in ICP file, read by agent before every outreach |
 
 ## Tips
 
-- **Be specific** — "find leads on LinkedIn" gives LinkedIn results. "find leads" without platform prompts you to choose.
+- **Be specific** — "find leads on LinkedIn" searches LinkedIn. "find leads" prompts you to pick a platform.
 - **Update stages** — keep your pipeline accurate so follow-ups target the right leads.
-- **Custom instructions** — set tone, max follow-ups, and rules in the ICP. The agent reads these before every outreach.
-- **Check-ins** — ask "show my pipeline" daily to see where things stand.
+- **Custom instructions** — set tone, max follow-ups, and rules in the ICP. Agent reads these before every outreach.
+- **Check-ins** — "show my pipeline" daily to see where things stand.
 
 ## Contributing
 
-PRs welcome! Ideas for contributions:
+PRs welcome! Ideas:
 - Reddit outreach skill
 - Better email finder workflows
 - Lead scoring improvements
