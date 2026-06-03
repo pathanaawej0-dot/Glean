@@ -7,7 +7,7 @@ description: "Email lead generation and outreach automation. Use when the user s
 
 BrowserAct-powered email prospecting and outreach. Load the `browser-act` skill for CLI commands.
 
-**Before any outreach, read "Custom Instructions for Agent" in `~/glean/icp/ideal-customer-profile.md`.**
+**Before any outreach, read "Custom Instructions for Agent" in `./glean-data/icp/ideal-customer-profile.md`.**
 
 ## Requirements
 - BrowserAct CLI installed
@@ -26,7 +26,7 @@ Use email verification tools to confirm deliverability.
 
 ### 3. Save to CSV
 ```bash
-echo "<id>,<name>,<title>,<company>,<industry>,<linkedin_url>,<x_handle>,<email>,<stage>,<score>,<source>,<platform>,<tags>,<notes>,<first_contact>,<last_followup>,<next_followup>" >> ~/glean/data/leads.csv
+echo "<id>,<name>,<title>,<company>,<industry>,<linkedin_url>,<x_handle>,<email>,<stage>,<score>,<source>,<platform>,<tags>,<notes>,<first_contact>,<last_followup>,<next_followup>" >> ./glean-data/data/leads.csv
 ```
 
 ### 4. Send Email

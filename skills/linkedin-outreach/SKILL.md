@@ -9,7 +9,7 @@ Platform-specific workflow for Glean. For multi-platform orchestration, load the
 
 BrowserAct-powered LinkedIn lead generation. Load the `browser-act` skill for all CLI commands.
 
-**Before any outreach, read "Custom Instructions for Agent" in `~/glean/icp/ideal-customer-profile.md` and follow strictly.**
+**Before any outreach, read "Custom Instructions for Agent" in `./glean-data/icp/ideal-customer-profile.md` and follow strictly.**
 
 ## Requirements
 - BrowserAct CLI installed
@@ -25,7 +25,7 @@ Navigate to each profile, get markdown: name, title, company, location, about.
 
 ### 3. Save to CSV
 ```bash
-echo "<id>,<name>,<title>,<company>,<industry>,<linkedin_url>,<x_handle>,<email>,<stage>,<score>,<source>,<platform>,<tags>,<notes>,<first_contact>,<last_followup>,<next_followup>" >> ~/glean/data/leads.csv
+echo "<id>,<name>,<title>,<company>,<industry>,<linkedin_url>,<x_handle>,<email>,<stage>,<score>,<source>,<platform>,<tags>,<notes>,<first_contact>,<last_followup>,<next_followup>" >> ./glean-data/data/leads.csv
 ```
 
 ### 4. Connect / Message

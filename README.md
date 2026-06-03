@@ -14,7 +14,7 @@ No SaaS. No third-party CRM. No API keys. Everything runs locally through your b
 
 | You Say | Agent Does |
 |---------|-----------|
-| `"setup glean"` | Asks 9 ICP questions, creates `~/glean/` directory and browser |
+| `"setup glean"` | Asks 9 ICP questions, creates `./glean-data/` directory and browser |
 | `"find leads on LinkedIn"` | Searches LinkedIn with ICP keywords, extracts profiles to CSV |
 | `"find leads on X"` | Searches X/Twitter profiles and posts, saves to CSV |
 | `"find leads via email"` | Finds and verifies email addresses, saves to CSV |
@@ -84,7 +84,7 @@ The agent asks (one by one, waiting for your answer):
 
 ### 3. Setup Complete
 
-The agent creates `~/glean/` with your ICP, an empty CSV with headers, and a BrowserAct browser named `glean`. Make sure you're logged into LinkedIn, X/Twitter, and Gmail/Outlook in Chrome before this step.
+The agent creates `./glean-data/` with your ICP, an empty CSV with headers, and a BrowserAct browser named `glean`. Make sure you're logged into LinkedIn, X/Twitter, and Gmail/Outlook in Chrome before this step.
 
 ## Daily Use
 
@@ -123,14 +123,14 @@ The agent creates `~/glean/` with your ICP, an empty CSV with headers, and a Bro
 ## Project Structure
 
 ```
-~/glean/
+./glean-data/
 ├── data/
 │   └── leads.csv               ← All leads (agent creates at setup)
 └── icp/
     └── ideal-customer-profile.md  ← Your ICP (agent creates at setup)
 ```
 
-The code lives at `~/glean/` on your machine. The skills live in your agent's config directory (installed by `npx skills add`).
+The data lives at `./glean-data/` in your project directory. The skills live in your agent's config directory (installed by `npx skills add`).
 
 ### CSV Schema
 

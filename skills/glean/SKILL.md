@@ -9,7 +9,7 @@ BrowserAct-powered lead management. Finds prospects on LinkedIn, X/Twitter, and 
 
 ## First-Run Setup
 
-If `~/glean/` does not exist, or `~/glean/icp/ideal-customer-profile.md` contains only template text, run first-run setup:
+If `./glean-data/` does not exist, or `./glean-data/icp/ideal-customer-profile.md` contains only template text, run first-run setup:
 
 ### Step 1: Check BrowserAct
 ```bash
@@ -40,12 +40,12 @@ Greet user, then ask each question and wait for answer before next:
 
 ### Step 3: Create Directory Structure
 ```bash
-mkdir -p ~/glean/data
+mkdir -p ./glean-data/data ./glean-data/icp
 ```
 
 ### Step 4: Save ICP
 ```bash
-cat > ~/glean/icp/ideal-customer-profile.md << 'EOF'
+cat > ./glean-data/icp/ideal-customer-profile.md << 'EOF'
 # Ideal Customer Profile
 
 ## Target Role
@@ -79,7 +79,7 @@ EOF
 
 ### Step 5: Create CSV
 ```bash
-echo "id,name,title,company,industry,linkedin_url,x_handle,email,stage,score,source,platform,tags,notes,first_contact,last_followup,next_followup" > ~/glean/data/leads.csv
+echo "id,name,title,company,industry,linkedin_url,x_handle,email,stage,score,source,platform,tags,notes,first_contact,last_followup,next_followup" > ./glean-data/data/leads.csv
 ```
 
 ### Step 6: Confirm
@@ -95,15 +95,15 @@ Load platform-specific skill:
 
 ### Show Pipeline
 ```bash
-echo "Discovered: $(tail -n +2 ~/glean/data/leads.csv | grep -c ',discovered,')"
-echo "Contacted: $(tail -n +2 ~/glean/data/leads.csv | grep -c ',contacted,')"
-echo "Replied: $(tail -n +2 ~/glean/data/leads.csv | grep -c ',replied,')"
-echo "Booked: $(tail -n +2 ~/glean/data/leads.csv | grep -c ',meeting_booked,')"
-echo "Converted: $(tail -n +2 ~/glean/data/leads.csv | grep -c ',converted,')"
+echo "Discovered: $(tail -n +2 ./glean-data/data/leads.csv | grep -c ',discovered,')"
+echo "Contacted: $(tail -n +2 ./glean-data/data/leads.csv | grep -c ',contacted,')"
+echo "Replied: $(tail -n +2 ./glean-data/data/leads.csv | grep -c ',replied,')"
+echo "Booked: $(tail -n +2 ./glean-data/data/leads.csv | grep -c ',meeting_booked,')"
+echo "Converted: $(tail -n +2 ./glean-data/data/leads.csv | grep -c ',converted,')"
 echo "--- By Platform ---"
-echo "LinkedIn: $(tail -n +2 ~/glean/data/leads.csv | grep -c ',linkedin,')"
-echo "X/Twitter: $(tail -n +2 ~/glean/data/leads.csv | grep -c ',x,')"
-echo "Email: $(tail -n +2 ~/glean/data/leads.csv | grep -c ',email,')"
+echo "LinkedIn: $(tail -n +2 ./glean-data/data/leads.csv | grep -c ',linkedin,')"
+echo "X/Twitter: $(tail -n +2 ./glean-data/data/leads.csv | grep -c ',x,')"
+echo "Email: $(tail -n +2 ./glean-data/data/leads.csv | grep -c ',email,')"
 ```
 
 ### Send Follow-Ups
@@ -113,9 +113,9 @@ Read CSV for stage=contacted where last_followup > 3 days. Group by platform. Fo
 When user reports a reply or meeting, update CSV:
 ```bash
 # Use sed to replace the stage field for a given ID
-sed -i 's/^<id>,/<id>,/<new_stage>,/' ~/glean/data/leads.csv
+sed -i 's/^<id>,/<id>,/<new_stage>,/' ./glean-data/data/leads.csv
 ```
 
 ## File Paths
-- ICP: `~/glean/icp/ideal-customer-profile.md`
-- Leads: `~/glean/data/leads.csv`
+- ICP: `./glean-data/icp/ideal-customer-profile.md`
+- Leads: `./glean-data/data/leads.csv`
