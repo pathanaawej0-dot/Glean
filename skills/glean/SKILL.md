@@ -118,6 +118,7 @@ Load platform-specific skill:
 - `linkedin-outreach` — search people, connect, message
 - `x-outreach` — search profiles/posts, reply, DM
 - `email-outreach` — find/verify emails, send campaigns
+- `gmaps-outreach` — search local businesses by keyword + location, extract contacts
 
 ### Show Pipeline
 ```bash
@@ -130,6 +131,7 @@ echo "--- By Platform ---"
 echo "LinkedIn: $(tail -n +2 ./glean-data/data/leads.csv | grep -c ',linkedin,')"
 echo "X/Twitter: $(tail -n +2 ./glean-data/data/leads.csv | grep -c ',x,')"
 echo "Email: $(tail -n +2 ./glean-data/data/leads.csv | grep -c ',email,')"
+echo "Google Maps: $(tail -n +2 ./glean-data/data/leads.csv | grep -c ',gmaps,')"
 ```
 
 ### Send Follow-Ups

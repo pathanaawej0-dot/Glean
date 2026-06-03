@@ -4,7 +4,7 @@
 [![Install with npx skills](https://img.shields.io/badge/install-npx%20skills-6B46C1)](https://github.com/pathanaawej0-dot/Glean)
 [![BrowserAct](https://img.shields.io/badge/powered%20by-BrowserAct-FF6B35)](https://www.browseract.com)
 
-**Glean** is an AI agent skill pack that turns your coding agent into a lead management system. It searches **LinkedIn, X/Twitter, and Email** for prospects matching your ideal customer profile (ICP), tracks them in a local CSV, and handles outreach — all through natural conversation.
+**Glean** is an AI agent skill pack that turns your coding agent into a lead management system. It searches **LinkedIn, X/Twitter, Email, and Google Maps** for prospects matching your ideal customer profile (ICP), tracks them in a local CSV, and handles outreach — all through natural conversation.
 
 No SaaS. No third-party CRM. No API keys. Everything runs locally through your browser.
 
@@ -40,7 +40,7 @@ No automation. No cron. No scheduled tasks. Everything is manual — you ask, th
 npx skills add pathanaawej0-dot/Glean
 ```
 
-This installs 5 skills to your AI agent. Works with **OpenCode, Claude Code, Codex, Cursor, Windsurf, and 67+ other agents**.
+This installs 6 skills to your AI agent. Works with **OpenCode, Claude Code, Codex, Cursor, Windsurf, and 67+ other agents**.
 
 ### Installed Skills
 
@@ -50,6 +50,7 @@ This installs 5 skills to your AI agent. Works with **OpenCode, Claude Code, Cod
 | `linkedin-outreach` | LinkedIn people search, connect, message | — |
 | `x-outreach` | X/Twitter search, reply, DM | — |
 | `email-outreach` | Email discovery, verification, sending | — |
+| `gmaps-outreach` | Google Maps local business search, enrichment | — |
 | `browser-act` | BrowserAct CLI reference | — |
 
 ### Verify Installation
@@ -57,7 +58,7 @@ This installs 5 skills to your AI agent. Works with **OpenCode, Claude Code, Cod
 Open your AI agent and say:
 > *"list installed skills"*
 
-You should see: `glean`, `linkedin-outreach`, `x-outreach`, `email-outreach`, `browser-act`.
+You should see: `glean`, `linkedin-outreach`, `x-outreach`, `email-outreach`, `gmaps-outreach`, `browser-act`.
 
 ## First Run — "setup glean"
 
@@ -89,6 +90,7 @@ The agent will:
 | `"find 10 leads on LinkedIn"` | LinkedIn | Searches people with ICP keywords, visits profiles, saves to CSV |
 | `"find leads posting about GEO on X"` | X/Twitter | Searches posts with pain-point keywords, extracts profiles |
 | `"find emails for my ICP"` | Email | Cross-references LinkedIn/X profiles with email finders |
+| `"find plumbers in Austin on Google Maps"` | Google Maps | Asks customization questions, searches, extracts to CSV |
 
 ### Managing Pipeline
 
@@ -124,6 +126,7 @@ pathanaawej0-dot/Glean/
 │   ├── linkedin-outreach/     ← LinkedIn workflow
 │   ├── x-outreach/            ← X/Twitter workflow
 │   ├── email-outreach/        ← Email workflow
+│   ├── gmaps-outreach/        ← Google Maps workflow
 │   └── browser-act/           ← CLI reference
 ├── .gitignore
 ├── LICENSE
@@ -147,7 +150,7 @@ id,name,title,company,industry,linkedin_url,x_handle,email,stage,score,source,pl
 
 | Field | Description |
 |-------|-------------|
-| `platform` | `linkedin`, `x`, or `email` — which source the lead came from |
+| `platform` | `linkedin`, `x`, `email`, or `gmaps` — which source the lead came from |
 | `stage` | `discovered` → `contacted` → `replied` → `meeting_booked` → `converted` → `dead` |
 
 ## Tips
@@ -163,7 +166,7 @@ PRs welcome! Ideas:
 - Reddit outreach skill
 - Better email finder workflows
 - Lead scoring improvements
-- Additional platform support (GitHub, Discord)
+- Additional platform support (GitHub, Discord, Reddit)
 
 ## License
 
