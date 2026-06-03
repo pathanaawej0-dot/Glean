@@ -14,6 +14,8 @@ BrowserAct-powered LinkedIn lead generation. Load the `browser-act` skill from `
 
 ## Workflow
 
+**Before any outreach, read the "Custom Instructions for Agent" section in `~/glean/icp/ideal-customer-profile.md` and follow those rules strictly.**
+
 ### 1. Search Leads
 
 Use BrowserAct to navigate to LinkedIn search with ICP keywords, extract profile URLs from the search results page.
@@ -32,9 +34,13 @@ echo "<id>,<name>,<title>,<company>,<industry>,<linkedin_url>,<x_handle>,<email>
 
 Navigate to profile → click Connect → add personalized note using ICP outreach angle → send.
 
+**Follow tone and style rules from Custom Instructions. Do NOT violate any "Do NOT" rules.**
+
 ### 5. Follow-up
 
 Check `leads.csv` for stage=contacted where last_followup > 3 days. Send a follow-up message.
+
+**Respect follow-up cadence from Custom Instructions. If max follow-ups reached, mark lead as `dead`.**
 
 ## Lead Stages
 

@@ -1,30 +1,33 @@
 # Ideal Customer Profile
 
-Fill this out — the agent uses it to find and qualify leads.
-
 ## Target Role
-- Title(s): [e.g., CTO, VP Engineering, Head of Product]
-- Seniority: [Founder / C-Suite / Director / Manager]
+- Title(s): SaaS Founder, CTO, Indie Hacker, Growth Lead
+- Seniority: Founder / C-Suite / Director
 
 ## Industry
-- [e.g., SaaS, Fintech, HealthTech, AI/ML]
+- SaaS, Web Apps, AI/ML, Content Platforms
 
 ## Company
-- Size: [1-10 / 10-50 / 50-200 / 200-1000 / 1000+ employees]
-- Stage: [Bootstrapped / Seed / Series A / B / C+ / Enterprise]
-- Location: [e.g., US, EU, Remote, India]
-
-## Pain Points (what we solve)
-- [e.g., manual outreach takes too much time]
-- [e.g., no CRM integration with AI agents]
-- [e.g., hard to scale personalized outreach]
+- Size: 1-50
+- Stage: Bootstrapped, Seed, Series A
+- Location: US, EU, Remote (global)
 
 ## Keywords for Search
-- LinkedIn: [e.g., "AI agent", "browser automation", "web scraping"]
-- X/Twitter: [e.g., "building in public", "SaaS founder", "indie hacker"]
+- LinkedIn/X: GEO, generative engine optimization, rank on ChatGPT, AI search traffic, Perplexity ranking, search visibility dropped, GEO doesn't work, how to rank on AI search
+
+## Outreach Angle (Validation Mode)
+- Reply to posts complaining about GEO / asking how to rank on AI search. Ask what's been hardest for them. No pitch, no links — just validation conversations.
 
 ## Exclusions
-- [e.g., agencies, freelancers, students]
+- Agencies, freelancers, students, recruiters
 
-## Outreach Angle
-- [e.g., "We built a tool that automates LinkedIn outreach using AI agents"]
+## Custom Instructions for Agent
+
+These rules override everything else. The agent MUST follow them strictly.
+
+- Outreach tone: [e.g., casual, professional, friendly]
+- Connection note style: [e.g., short 2 lines, compliment + ask]
+- Follow-up cadence: [e.g., wait 5 days, max 3 follow-ups total]
+- Do NOT: [e.g., pitch in first message, send links, use templates]
+- Always: [e.g., personalize each message, check if they posted recently]
+- Lead qualification: [e.g., only if they have 500+ connections, only SaaS founders]

@@ -41,6 +41,7 @@ Ask each question, wait for answer, save. Do NOT dump all questions at once.
 6. **Keywords**: "Keywords to search for? (e.g., AI agent, browser automation, web scraping)"
 7. **Outreach Angle**: "What's your outreach angle? What value do you offer? (e.g., 'We built a tool that automates LinkedIn outreach using AI agents')"
 8. **Exclusions**: "Anything to exclude? (e.g., agencies, freelancers, students)"
+9. **Custom Instructions**: "Any specific instructions for how I should handle outreach? Tone, style, do's and don'ts, follow-up rules? (e.g., casual tone, no pitching in first message, wait 5 days before follow-up)"
 
 ### Step 3: Save ICP
 
@@ -68,6 +69,12 @@ cat > ~/glean/icp/ideal-customer-profile.md << 'ICPEOF'
 
 ## Exclusions
 - <answer8>
+
+## Custom Instructions for Agent
+
+These rules override everything else. The agent MUST follow them strictly.
+
+- <answer9>
 ICPEOF
 ```
 
